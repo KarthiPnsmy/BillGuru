@@ -1,0 +1,61 @@
+<%= form_for(@reminder) do |f| %>
+  <% if @reminder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this reminder from being saved:</h2>
+
+      <ul>
+      <% @reminder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <textarea rows="4" cols="50" name="reminder[description]" id="reminder_description" tooltipText="Enter description for your reminder"><%= @reminder.description %></textarea>
+  </div>
+
+<% @reminder.alert_type.blank? ? selVal = 2 : selVal = @reminder.alert_type %>
+
+  <div class="field">
+    <%= f.label :alert_type, "Alert Type" %><br />
+    <%= f.select(:alert_type, options_for_select([['Daily', 0],['Weekly', 1],['Monthly', 2],['Once every two months', 3]],selVal)) %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date, "Due Date" %><br />
+    <%= f.date_select :due_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :alert_threshold , "Alert Threshold" %><br />
+    <input type="text" size="5" name="reminder[alert_threshold]" tooltipText="No of days before the due date Alert will occur" id="reminder_alert_threshold" value="<%= @reminder.alert_threshold %>">
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.check_box :email %>
+  </div>
+  <div class="field">
+    <%= f.label :sms %><br />
+    <%= f.check_box :sms %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook %><br />
+    <%= f.check_box :facebook %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <textarea rows="4" cols="50" name="reminder[notes]" id="reminder_notes" tooltipText="Enter note for your reminder"><%= @reminder.notes %></textarea>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+var tooltipObj = new DHTMLgoodies_formTooltip();
+tooltipObj.setTooltipPosition('right');
+tooltipObj.setPageBgColor('#EEEEEE');
+tooltipObj.setTooltipCornerSize(15);
+tooltipObj.initFormFieldTooltip();
+</script>

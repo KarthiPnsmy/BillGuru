@@ -1,0 +1,34 @@
+<%= form_for(@payment) do |f| %>
+  <% if @payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+
+      <ul>
+      <% @payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% if !params[:bill_id].nil? %>
+  <%= f.hidden_field :reminder_id, :value => params[:bill_id] %>
+<% else %>
+ <%= f.hidden_field :reminder_id, :value => @payment.reminder.id %>
+<% end %>
+  <div class="field">
+    <%= f.label :pay_date %><br />
+    <%= f.date_select :pay_date %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

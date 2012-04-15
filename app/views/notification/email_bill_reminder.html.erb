@@ -1,0 +1,13 @@
+Dear  <%= @username -%>,
+<br/><br/>
+This is the reminder from BillGuru.com for your bill payment of <b><%= @bill_description %></b> due on <b><%= @bill_due %></b>
+<br/><br/>
+<b>A payment entry for this bill will be automatically created by end of day today, which you can edit later.</b>
+<br/><br/>
+If already paid, click here or visit the url: <%= @bill_pay_url %> to mark this bill as paid
+<br/>
+To edit this bill reminder click here or visit the url: <%= @bill_edit_url %> .
+<br/><br/><br/>
+
+<b>BillGuru Team</b>
+

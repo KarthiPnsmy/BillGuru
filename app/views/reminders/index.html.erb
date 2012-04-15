@@ -1,0 +1,8 @@
+<h1>Listing Reminders</h1>
+
+<% if not @reminders.nil? %>
+<%= render :partial => 'shared/reminder_item' %>
+<% end %>
+<br />
+<%= will_paginate @reminders %>
+<%= link_to 'New Reminder', new_reminder_path %>

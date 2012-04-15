@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Payment Summary</h1>
+
+<% if !@reminders.blank? %>
+                   <% @reminders.each { |reminder| %>
+                          <h4><%= reminder.description %> </h4>
+                             <% if !reminder.payments.blank? %>
+                                
+                                <% @payments = reminder.payments.paginate(:page => params[:page],:per_page => 10) %>
+                                <%= render :partial => 'shared/payment_item',:locals => {:show_total => true} -%>
+                                <%= will_paginate @payments %>
+                           <% else %>
+                              <p> No payment availabale</P>
+                           <% end %>
+                   <% } %>
+<% else %>
+	<p> No reminders availabale</p>
+<% end %>

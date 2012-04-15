@@ -1,0 +1,27 @@
+#customers {
+    border-collapse: collapse;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    width: 100%;
+}
+#customers {
+    border-collapse: collapse;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    width: 100%;
+}
+#customers td, #customers th {
+    border: 1px solid #98BF21;
+    font-size: 1.2em;
+    padding: 3px 7px 2px;
+}
+#customers th {
+    background-color: #A7C942;
+    color: #FFFFFF;
+    font-size: 1.4em;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: left;
+}
+#customers tr.alt td {
+    background-color: #EAF2D3;
+    color: #000000;
+}

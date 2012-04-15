@@ -1,0 +1,36 @@
+
+<table id="customers" style="width:500px">
+  <tr>
+    <th>Reminder</th>
+    <th>Payment Date</th>
+    <th>Amount</th>
+    <th>Notes</th>
+    <th colspan="3">Action</th>
+  </tr>
+<% total = 0 %>
+<% @payments.each do |payment| %>
+  <% unless payment.reminder.nil? %>
+      <tr>
+        <td style="text-align:center"><%= payment.reminder.description %></td>
+        <td style="text-align:center"><%= payment.pay_date %></td>
+        <td style="text-align:center"><%= payment.amount %></td>
+        <td><%= payment.notes %></td>
+        <td><%= link_to 'Show', payment %></td>
+        <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
+       </tr>
+       <% total += payment.amount.to_i %>
+   <% end %>
+<% end %>
+  <% if show_total == true %>
+   <tr>
+    <td style="text-align:center"></td>
+    <td style="text-align:center"><b>Total Amount</b></td>
+    <td style="text-align:center"><b><%= total %></b></td>
+    <td style="text-align:center"></td>
+    <td style="text-align:center"></td>
+    <td style="text-align:center"></td>
+  </tr>
+  <% end %>
+</table>
+<br/>
+

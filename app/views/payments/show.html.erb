@@ -1,0 +1,25 @@
+<h1>Payment Detail</h1>
+
+
+
+<table>
+<tr>
+<td><b>Pay date:</b></td>
+<td><%= @payment.pay_date %></td>
+</tr>
+
+<tr>
+<td><b>Amount:</b></td>
+<td><%= @payment.amount %></td>
+</tr>
+
+<tr>
+<td><b>Notes:</b></td>
+<td><%= @payment.notes %></td>
+</tr>
+
+</table>
+<br/>
+
+<%= link_to 'Back', @payment.reminder %>
+

@@ -1,0 +1,17 @@
+<div id="search_container" style="display:inline;">
+<div style="width:200px;">
+<h1>All users</h1>
+</div>
+<div id="search_project_container" style="width:240px;float:right">
+    <form name="search_form" action="/users" method="get">
+	<input id="search_input_project" autocomplete="off" type="text" placeholder="Search User" name="search_user" size="20" value="<%= params[:search_user] %>"/>
+	<input id="search_user_button" type="submit" value="Search" />
+    </form>
+</div>
+</div>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate %>

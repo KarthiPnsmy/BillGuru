@@ -1,0 +1,42 @@
+
+
+<h1>Payment Report</h1>
+<form name="report_form" action="/report" method="get">
+  <% if not params[:start].nil? %>
+    <% @start_date = Date.civil(params[:start][:"start_date(1i)"].to_i,params[:start][:"start_date(2i)"].to_i,params[:start][:"start_date(3i)"].to_i) %>
+  <% end %>
+  <% if not params[:end].nil? %>
+    <% @end_date = Date.civil(params[:end][:"start_date(1i)"].to_i,params[:end][:"start_date(2i)"].to_i,params[:end][:"start_date(3i)"].to_i) %>
+  <% end %>
+  <% if @start_date.nil? %>
+    <% @start_date = Date.today %>
+  <% end %>
+  <% if @end_date.nil? %>
+    <% @end_date = Date.today + 10.days %>
+  <% end %>
+
+      <fieldset class="form_option">
+          <legend>Options</legend>
+          <table>
+          <tr>
+          <td></td>
+          <td align="left" ><b>From :</b> <%= date_select('start', 'start_date', :order => [:month, :day, :year],:default => @start_date )%>
+          </td>
+          <td></td>
+          <td align="left" ><b>&nbsp;&nbsp;&nbsp;&nbsp;To:</b> <%= date_select('end', 'start_date', :order => [:month, :day, :year],:default => @end_date)%></td>
+          <td></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="generate" type="submit" value="Generate Report" /></td>
+          </tr>
+          </table>
+          
+      </fieldset>
+
+</form>
+
+
+
+<% if !@payments.blank? %>
+	<h1>Payments</h1>
+	<%= render :partial => 'shared/payment_report_item',:locals => {:show_total => true} -%>
+	<%= will_paginate @payments %>
+<% end %>

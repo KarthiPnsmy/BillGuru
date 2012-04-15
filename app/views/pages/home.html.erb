@@ -1,0 +1,24 @@
+<% if signed_in? %>
+      <div class="sidebar round">
+        <% render 'shared/user_info' %>
+      </div>
+	<% if !@reminders.blank? %>
+		<h1>Listing Reminders</h1>
+		<%= render :partial => 'shared/reminder_item' %>
+		<%= will_paginate @reminders %>
+	<% else %>
+		<p> No reminders availabale</P>
+	<% end %>
+	<br />
+        
+	<%= link_to 'New Reminder', new_reminder_path %>
+<% else %>
+
+<h1><%= app_name %></h1>
+<p>
+  This is the home page for the <a href="http://railstutorial.org/"><%= app_name %></a> application.
+</p>
+
+<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+
+<% end %>

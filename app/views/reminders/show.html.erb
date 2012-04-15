@@ -1,0 +1,82 @@
+
+
+<h1>Reminder Details</h1>
+
+<table>
+<tr>
+<td valign="top"><b>Description:</b></td>
+<td valign="top"><%= @reminder.description %></td>
+</tr>
+
+<tr>
+<td valign="top"><b>Alert Type:</b></td>
+<td valign="top"><%= alert_type_name(@reminder.alert_type.to_i) %></td>
+</tr>
+
+
+<tr>
+<td valign="top"><b>Due date:</b></td>
+<td valign="top"><%= @reminder.due_date %></td>
+</tr>
+
+<tr>
+<td valign="top"><b>Alert threshold:</b></td>
+<td valign="top"><%= @reminder.alert_threshold %></td>
+</tr>
+
+<tr>
+<td valign="top"><b>Email:</b></td>
+<td valign="top">
+       <% if @reminder.email %>
+	    <img src="/images/icons/tick.png" alt="True"/>
+       <% else %>	  
+	    <img src="/images/icons/cross.png" alt="False"/>
+       <% end %>
+</td>
+</tr>
+
+<tr>
+<td align="top"> <b>Sms:</b</td>
+<td align="top">
+       <% if @reminder.sms %>
+	    <img src="/images/icons/tick.png" alt="True"/>
+       <% else %>	  
+	    <img src="/images/icons/cross.png" alt="False"/>
+       <% end %>
+</td>
+</tr>
+
+<tr>
+<td valign="top"><b>Facebook:</b></td>
+<td valign="top">
+       <% if @reminder.facebook %>
+	    <img src="/images/icons/tick.png" alt="True"/>
+       <% else %>	  
+	    <img src="/images/icons/cross.png" alt="False"/>
+       <% end %>
+</td>
+</tr>
+
+<tr>
+<td valign="top"><b>Notes:</b></td>
+<td valign="top"><%= @reminder.notes %></td> 	
+</tr>
+
+</table>
+
+ 	 	
+<%= link_to 'Back', reminders_path %>
+<br/>
+<br/>
+
+<% if !@payments.blank? %>
+	<h1>Recent Payments</h1>
+	<%= render :partial => 'shared/payment_item',:locals => {:show_total => false} -%>
+	<%= will_paginate @payments %>
+<% else %>
+	<p> No payments availabale</P>
+<% end %>
+<br />
+
+<% link_to 'New payments', new_payment_path %>
+<%= link_to 'New Payment', new_payment_path(:bill_id => @reminder.id) %>

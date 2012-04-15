@@ -1,0 +1,6 @@
+<% if @reminders.any? %>
+  <table>
+    <%= render :partial => 'shared/reminder_item' %>
+  </table>
+  
+<% end %>
