@@ -49,4 +49,19 @@ class Notification < ActionMailer::Base
 
 		@sent_on = Time.now
 	end
+
+        def test_mail()
+		# email header information must be added here
+		@recipients = "karthi.nkl@gmail.com" #Email address of the user
+		@from = "support@billguru.com"
+		@subject = "BillGuru : test mail"
+
+		# email body substitutions go here
+		@body["username"] = "karthik"
+		
+		content_type "text/html"
+
+		@sent_on = Time.now
+	end
+
 end

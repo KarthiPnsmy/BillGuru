@@ -1,26 +1,33 @@
 namespace :alert  do
   desc "create some reminder notification"
   task :send_reminder => :environment do
-    logger.info "create some reminder notification"
-    logger.info "This task running at ======== #{Time.now} ======="
+    puts "create some reminder notification"
+    puts "This task running at ======== #{Time.now} ======="
     @users = User.all
     for user in @users
-    logger.info "#{user.name} email is #{user.email}"
+    puts "#{user.name} email is #{user.email}"
          user.reminders.each { |reminder|
-                logger.info "--user--#{user.name} ,reminder #{reminder.description} ,origin due #{reminder.due_date} ,threshold #{reminder.alert_threshold} "
+                puts "--user--#{user.name} ,reminder #{reminder.description} ,origin due #{reminder.due_date} ,threshold #{reminder.alert_threshold} "
                 @new_due = reminder.due_date-reminder.alert_threshold.to_i.days
-                logger.info "new due #{@new_due}"
+                puts "new due #{@new_due}"
                 if @new_due == Date.today
-                    logger.info "send reminder"
+                    puts "send reminder"
                     Notification.deliver_email_bill_reminder(user, reminder) unless user.email.blank?
                 else
-                    logger.info "dont send reminder"
+                    puts "dont send reminder"
                 end
                     reminder.payments.each { |payment|
 
                     }
          }
     end
+  end
+
+  task :test_mail => :environment do
+    puts "create some mail notification"
+    puts "This mail sending at ======== #{Time.now} ======="
+    Notification.deliver_test_mail()
+    puts "mail was sent successfully!"
   end
 
   task :create_payment => :environment do
