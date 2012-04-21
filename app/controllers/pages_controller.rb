@@ -3,6 +3,8 @@ require 'cgi'
 class PagesController < ApplicationController
   def home
     @title = "Home"
+    p "this host name ----"
+    p request.host_with_port
     if signed_in?
       #@micropost = Micropost.new
       #@feed_items = current_user.feed.paginate(:page => params[:page],:per_page => 10)
